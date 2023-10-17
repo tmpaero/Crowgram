@@ -7,6 +7,7 @@ NC='\033[0m'
 
 # Variables [FOR DEVS]
 URL="https://github.com/iniridwanul/Crowgram"
+is_termux=false
 
 archlinux() {
     echo -e "${RED}Installing dependencies...${NC}"
@@ -31,6 +32,7 @@ fedora() {
 }
 
 termux() {
+    is_termux=true
     echo -e "${RED}Installing dependencies...${NC}"
     apt update -y
     apt upgrade -y
@@ -95,7 +97,11 @@ check_dir() {
 check_venv() {
     if [ ! -d "venv" ]; then
         echo -e "${RED}Python virtual environment not found. Installing...${NC}"
-        python3 -m venv venv
+        if [ $is_termux == true ]; then
+            virtualenv -p python3 venv
+        else
+            python3 -m venv venv
+        fi
         check_venv
     else
         echo -e "${GREEN}Python virtual environment found.${NC}"
@@ -107,7 +113,10 @@ check_venv() {
 # Install requirements
 install_requirements() {
     echo -e "${RED}Installing requirements...${NC}"
-    pip install -r requirements.txt
+    if [ $is_termux == true ]; then
+        sed -i "s/py-tgcalls==0.9.7/py-tgcalls/g" Crowgram/requirements.txt
+    fi
+        pip install -r requirements.txt
     echo -e "${GREEN}Requirements installed.${NC}"
 }
 
@@ -218,8 +227,9 @@ run() {
     clear
     python3 crowgram
 }
-check_os
+
 check_dir
+check_os
 check_venv
 install_requirements
 check_env
