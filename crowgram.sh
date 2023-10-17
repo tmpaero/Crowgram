@@ -34,7 +34,7 @@ termux() {
     echo -e "${RED}Installing dependencies...${NC}"
     pkg update
     pkg upgrade -y
-    pkg install -y git python python-pip python-setuptools python-wheel python-virtualenv ffmpeg nodejs npm
+    pkg install -y git python python-virtualenv ffmpeg nodejs
     echo -e "${GREEN}Dependencies installed.${NC}"
 }
 
