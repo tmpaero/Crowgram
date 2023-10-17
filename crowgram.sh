@@ -35,8 +35,7 @@ termux() {
     apt update -y
     apt upgrade -y
     apt install python -y
-    apt install python-setuptools -y
-    apt install virtualenv -y
+    pip3 install virtualenv
     apt install git nodejs ffmpeg -y
     echo -e "${GREEN}Dependencies installed.${NC}"
 }
