@@ -228,8 +228,8 @@ run() {
     python3 crowgram
 }
 
-check_dir
 check_os
+check_dir
 check_venv
 install_requirements
 check_env
