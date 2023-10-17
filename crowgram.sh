@@ -114,7 +114,7 @@ check_venv() {
 install_requirements() {
     echo -e "${RED}Installing requirements...${NC}"
     if [ $is_termux == true ]; then
-        sed -i "s/py-tgcalls==0.9.7/py-crowcalls/g" requirements.txt
+        sed -i "s/py-tgcalls==0.9.7/crowcalls/g" requirements.txt
     fi
         pip install -r requirements.txt
     echo -e "${GREEN}Requirements installed.${NC}"
