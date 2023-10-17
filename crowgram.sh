@@ -115,6 +115,9 @@ install_requirements() {
     echo -e "${RED}Installing requirements...${NC}"
     if [ $is_termux == true ]; then
         sed -i "s/py-tgcalls==0.9.7/crowtgcalls/g" requirements.txt
+        echo "aiohttp" >> requirements.txt
+        echo "screeninfo" >> requirements.txt
+        echo "psutil" >> requirements.txt
     fi
         pip install -r requirements.txt
     echo -e "${GREEN}Requirements installed.${NC}"
