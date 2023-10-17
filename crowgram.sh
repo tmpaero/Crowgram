@@ -216,7 +216,7 @@ run() {
     clear
     python3 crowgram
 }
-
+check_os
 check_dir
 check_venv
 install_requirements
